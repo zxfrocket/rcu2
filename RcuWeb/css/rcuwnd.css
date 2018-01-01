@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+
+.wnd-max-header
+{
+    background-image: url(../../resource/image/wnd/wnd_max_header.png);
+}
+
+.wnd-login-header
+{
+    background-image: url(../../resource/image/wnd/wnd_login_header.png);
+}
+
+.wnd-login-frm
+{
+    background-image: url(../../resource/image/wnd/wnd_login_frm.png);
+}
+
+.wnd-normal-header
+{
+    background-image: url(../../resource/image/wnd/wnd_normal_header.png);
+}
+
+.wnd-normal-frm
+{
+    background-image: url(../../resource/image/wnd/wnd_normal_frm.png);
+}
+
+.wnd-alert-header
+{
+    background-image: url(../../resource/image/wnd/wnd_alert_header.png);
+}
+
+.wnd-alert-frm
+{
+    background-image: url(../../resource/image/wnd/wnd_alert_frm.png);
+}
+
+.wnd-rcu-btn
+{
+    background-image: url(../../resource/image/wnd/wnd_btn_off.png);
+}
+
+.wnd-rcu-btn:hover
+{
+    background-image: url(../../resource/image/wnd/wnd_btn_on.png);
+    cursor: pointer ;
+}
+
+select.wnd-rcu-select[ name^='light_state_']
+{
+    color: gray;
+}
+
+select.wnd-rcu-select[name^='light_state_'] > option[value='0']
+{
+    color: gray;
+}
+
+select.wnd-rcu-select[name^='light_state_'] > option[value='1']
+{
+    color: red;
+}

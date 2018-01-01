@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh" xml:lang="zh">
+
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+ <meta http-equiv="Content-Language" content="zh-cn" />
+ 
+ <link type="text/css" href="./third/ui/css/jquery-ui.css" rel="stylesheet" />
+ <link type="text/css" href="./third/treeview/jquery.treeview.css" rel="stylesheet" />
+ <link type="text/css" href="./third/qtip/jquery.qtip.css" rel="stylesheet" />
+ <link type="text/css" href="./third/window/css/jquery.window.css" rel="stylesheet" />
+ <link type="text/css" href="./third/datepicker/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+ <link type="text/css" href="./css/rcu.css" rel="stylesheet" />
+ <link type="text/css" href="./css/rcuwnd.css" rel="stylesheet" />
+ <link type="text/css" href="./third/jqplot/jquery.jqplot.min.css" rel="stylesheet" />
+ <link type="text/css" href="./third/DataTables/css/jquery.dataTables.css" rel="stylesheet" />
+ 
+ <script type="text/javascript" language="javascript" src="./third/jquery.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/ui/jquery-ui.min.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/treeview/jquery.treeview.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/qtip/jquery.qtip.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/window/jquery.window.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/datepicker/jquery-ui-timepicker-addon.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/datepicker/jquery-ui-sliderAccess.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/datepicker/jquery.ui.datepicker-zh-CN.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/datepicker/jquery-ui-timepicker-zh-CN.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/jqplot/jquery.jqplot.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/jqplot/plugins/jqplot.barRenderer.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/jqplot/plugins/jqplot.canvasTextRenderer.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/jqplot/plugins/jqplot.categoryAxisRenderer.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/jqplot/plugins/jqplot.canvasAxisTickRenderer.js"></script>
+ <script type="text/javascript" language="javascript" src="./third/jqplot/plugins/jqplot.highlighter.js"></script>
+ 
+ <script type="text/javascript" language="javascript" src="./third/DataTables/jquery.dataTables.js"></script>
+ 
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/_rcu.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuObject.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCommon.js"></script>
+ 
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcutable.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcuframe.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcucontainer.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcutoolbar.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcuindex.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcumonitor.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcutip.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcuwnd.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcuselect.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/jquery.rcusearch.js"></script>
+ 
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuLogin.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuFrame.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuContainer.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuBackInst.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuToolBar.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuIndex.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMonitor.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuDock.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuTips.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuWnd.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuUserAdd.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuUserDel.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuUserChgPass.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuUserChgLevel.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuRoomsAdd.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuRoomsMerge.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuRoomsRename.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuRoomsOrder.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdPoll.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdCardDelay.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdDoorClock.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdLightCtrl.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdAirCtrl.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdTempCtrl.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdModeSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdDaySet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdNightSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdWindSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdTempComp.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdInSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdGeothermSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuCmdLinkSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMoInfo.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMoLayout.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMoTemp.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMoLog.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuMoSet.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuSearchComplex.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuConfigPoll.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuConfigOpera.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuConfigAlert.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuConfigMode.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuSearchView.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuAlertView.js"></script>
+ <!--_DEBUG--><script type="text/javascript" language="javascript" src="./scripts/client/RcuLogView.js"></script>
+ 
+ <script>
+  $(document).ready(function(){
+      $.rcu.main();
+    }); 
+ </script>
+ 
+</head>
+
+<body>
+</body>
+
+</html>

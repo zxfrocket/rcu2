@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+ul.rcu-tree-root > li > span
+{
+    background-image: url(../../resource/image/index/64/building_tree_root.png);
+}
+
+ul.rcu-tree-floor > li > span
+{
+    background-image: url(../../resource/image/index/64/building_tree_floor.png);
+}
+
+ul.rcu-tree-room > li > span
+{
+    background-image: url(../../resource/image/index/64/building_tree_room.png);
+}

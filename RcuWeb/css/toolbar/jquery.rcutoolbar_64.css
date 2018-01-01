@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+
+div.tool-item-inner[name="user"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_user.png);
+}
+
+div.tool-item-inner[name="window"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_window.png);
+}
+
+div.tool-item-inner[name="cmd"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_cmd.png);
+}
+
+div.tool-item-inner[name="rooms"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_rooms.png);
+}
+
+div.tool-item-inner[name="search"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_search.png);
+}
+
+div.tool-item-inner[name="alert"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_alert.png);
+}
+
+div.tool-item-inner[name="stat"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_stat.png);
+}
+
+div.tool-item-inner[name="log"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_log.png);
+}
+
+div.tool-item-inner[name="config"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_config.png);
+}
+
+div.tool-item-inner[name="help"]
+{
+    background-image: url(../../resource/image/toolbar/64/toolbar_help.png);
+}
+

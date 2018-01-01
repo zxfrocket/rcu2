@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Class-Path: lib\mysql.jar lib\RXTXcomm.jar lib\rxtxParallel.dll lib\rxtxSerial.dll
+Main-Class: com.dlrtie.rcu.RcuOrder
