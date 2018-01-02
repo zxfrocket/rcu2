@@ -134,7 +134,7 @@ UPDATE `rcu_room_state` SET room_name = '0618卧室' WHERE room_id = 630;
 UPDATE `rcu_room_state` SET room_name = '0619客厅' WHERE room_id = 631;
 UPDATE `rcu_room_state` SET room_name = '0619卧室' WHERE room_id = 632;
 UPDATE `rcu_room_state` SET room_name = '0620客厅' WHERE room_id = 633;
-UPDATE `rcu_room_state` SET room_name = '620卧室' WHERE room_id = 634;
+UPDATE `rcu_room_state` SET room_name = '0620卧室' WHERE room_id = 634;
 UPDATE `rcu_room_state` SET room_name = '0621客厅' WHERE room_id = 635;
 UPDATE `rcu_room_state` SET room_name = '0621卧室' WHERE room_id = 636;
 UPDATE `rcu_room_state` SET room_name = '0622客厅' WHERE room_id = 637;
