@@ -40,6 +40,7 @@ INSERT INTO RCU_TITLE_DEFINE (title_id,title_name) VALUES('cmd2','命令2');/*cm
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('holder','','p_holder');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('card','门卡状态','p_card_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('busy','DND状态','p_busy_state');
+INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('waiter','侍者服务','p_waiter_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('room_temp','房间温度(℃)','p_temp');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('setting_temp','设定温度(℃)','p_temp');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('wind_level','空调风速','p_wind_level');
@@ -203,6 +204,7 @@ INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('room_temp',0x80
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('setting_temp',0x8008,'var ret = [setting_temp];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('card',0x8008,'var ret = [card];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('busy',0x8008,'var ret = [busy];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('waiter',0x8008,'var ret = [waiter];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('wind_level',0x8008,'var ret = [wind_level];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('valve_state',0x8008,'var ret = [valve_state];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('light_state_1',0x8008,'var ret = [light_state_1];ret = ret.toString();');
@@ -399,6 +401,7 @@ INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_p
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0x8008,5,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('card',0x8008,6,1,7,1,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('busy',0x8008,6,1,6,1,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('waiter',0x8008,6,1,5,1,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('setting_temp',0x8008,7,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('room_temp',0x8008,8,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('wind_level',0x8008,9,1,5,3,0);
@@ -880,6 +883,8 @@ INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_card_state
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_card_state',1,'有卡');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_busy_state',0,'非DND');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_busy_state',1,'DND');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',0,'无服务');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',1,'侍者服务');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_door_clock',1,'正常模式');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_door_clock',2,'失聪模式');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_wind_level',8,'自动');
@@ -1165,6 +1170,7 @@ INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_setting_temp',4,1);
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_wind_level',5,0);
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_welcome_level',6,0);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'waiter',7,0);
 
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (2,'ctrl_mode',0,0);
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (2,'season_mode',1,0);

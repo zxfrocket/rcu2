@@ -22,6 +22,16 @@ div.mo-cell[name="busy"][value="1"]
   background-image: url(../../resource/image/monitor/256/busyYes.png);
 }
 
+div.mo-cell[name="waiter"][value="0"]
+{
+    background-image: url(../../resource/image/monitor/256/waiterNo.png);
+}
+
+div.mo-cell[name="waiter"][value="1"]
+{
+    background-image: url(../../resource/image/monitor/256/waiterYes.png);
+}
+
 div.mo-cell[name="wind_level"][value="0"],
 div.mo-cell[name="wind_level1"][value="0"],
 div.mo-cell[name="wind_level2"][value="0"]
