@@ -100,7 +100,7 @@
                     case ($.rcu.conststr.tag.searchview + "_0")://结果1
                     case ($.rcu.conststr.tag.alertview + "_0")://温度报警
                         //TODO 暂时先取前10个
-                        aoColumns = $.rcu.get("common").getStateTitleArr().slice(0,10);
+                        aoColumns = $.rcu.get("common").getStateTitleArr().slice(0,11);
                         break;
                 }
                 var options = {

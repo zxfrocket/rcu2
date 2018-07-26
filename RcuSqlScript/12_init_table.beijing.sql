@@ -883,8 +883,8 @@ INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_card_state
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_card_state',1,'有卡');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_busy_state',0,'非DND');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_busy_state',1,'DND');
-INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',0,'无服务');
-INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',1,'侍者服务');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',0,'无需求');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_state',1,'有需求');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_door_clock',1,'正常模式');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_door_clock',2,'失聪模式');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_wind_level',8,'自动');
@@ -1163,14 +1163,14 @@ INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (0
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (0,'wind_level',6,0);
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (0,'valve_state',7,0);
 
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_ctrl_dn',0,1);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_ctrl_up',1,1);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_hold_dn',2,1);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_hold_up',3,1);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_setting_temp',4,1);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_wind_level',5,0);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_welcome_level',6,0);
-INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'waiter',7,0);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'waiter',0,0);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_setting_temp',1,1);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_wind_level',2,0);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'in_welcome_level',3,0);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_ctrl_dn',4,1);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_ctrl_up',5,1);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_hold_dn',6,1);
+INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (1,'temp_hold_up',7,1);
 
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (2,'ctrl_mode',0,0);
 INSERT INTO RCU_GROUP_INFO (group_id, state_name,state_pos,state_type) VALUES (2,'season_mode',1,0);

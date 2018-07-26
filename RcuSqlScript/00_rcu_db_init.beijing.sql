@@ -63,6 +63,7 @@ holder int NULL DEFAULT 0,/*占位状态，无意义*/
 /*8008返回字段*/
 card int NULL DEFAULT 0,
 busy int NULL DEFAULT 0,
+waiter int NULL DEFAULT 0,
 setting_temp int NULL DEFAULT 20,
 room_temp int NULL DEFAULT 20,
 wind_level int NULL DEFAULT 1,

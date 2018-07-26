@@ -53,6 +53,6 @@ class RcuAlert extends RcuObject
         }
         $db->disconn();
         
-        return "room_temp <= $min OR room_temp >= $max";
+        return "room_temp <= $min OR room_temp >= $max OR waiter = 1";
     }
 }

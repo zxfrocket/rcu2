@@ -573,12 +573,12 @@ function RcuCommon(opt)
             var st = this._descs.state;
             var arr = [];
             //TODO 房间类型暂时不加，知道完成房价类型修改之后
-            arr.push({"sTitle": "房间ID"});
-            arr.push({"sTitle": "房间名"});
+            arr.push({"sTitle": "房间ID", "name": "roomID"});
+            arr.push({"sTitle": "房间名", "name": "roomName"});
             for(var i = 0; i < names.length ; ++i)
             {
                 var name = names[i];
-                var cell = {"sTitle": st[name].meaning};
+                var cell = {"sTitle": st[name].meaning, "name": name};
                 arr.push(cell);
             }
             return arr ;
