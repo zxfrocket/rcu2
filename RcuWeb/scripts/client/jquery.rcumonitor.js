@@ -28,7 +28,7 @@
                         title = "结果1";
                         break;
                     case $.rcu.conststr.tag.alertview:
-                        title = "温度报警";
+                        title = "异常报警";
                         break;
                     }
                     this.tabs( "add", tabid, title);

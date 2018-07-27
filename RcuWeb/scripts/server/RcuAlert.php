@@ -10,7 +10,7 @@ class RcuAlert extends RcuObject
                 $param = $this->options['param'];
                 $alerttype = $param['alerttype'];
                 $cond = '' ;
-                //0 温度报警
+                //0 异常报警
                 switch($alerttype)
                 {
                 case '0':

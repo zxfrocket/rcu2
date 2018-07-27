@@ -75,9 +75,10 @@
                             tabInst.fnClearTable(false);
                             tabInst.fnAddData(aaData);
                             break;
-                        case ($.rcu.conststr.tag.alertview + "_0")://温度报警
+                        case ($.rcu.conststr.tag.alertview + "_0")://异常报警
                             tabInst.fnClearTable(false);
                             tabInst.fnAddData(aaData);
+                            focusOnAlert(aaData);
                             break;
                     }
                 }
@@ -98,7 +99,7 @@
                         aaSorting = [[ 0, "desc" ]];
                         break;
                     case ($.rcu.conststr.tag.searchview + "_0")://结果1
-                    case ($.rcu.conststr.tag.alertview + "_0")://温度报警
+                    case ($.rcu.conststr.tag.alertview + "_0")://异常报警
                         //TODO 暂时先取前10个
                         aoColumns = $.rcu.get("common").getStateTitleArr().slice(0,11);
                         break;
@@ -133,7 +134,19 @@
             var retData = [];
             return newData.slice(0,dertLen);
         }
-    
+
+        function focusOnAlert(aaData) {
+        var j2ndLi = $($('#rcu-td-monitor ul').children('li')[2]);
+            if (!j2ndLi.hasClass('ui-state-active')) {
+                for (var i = 0; i < aaData.length; ++i) {
+                    if (aaData[i][10] === '有需求') {
+                        j2ndLi.find('a').trigger('click');
+                        break;
+                    }
+                }
+            }
+        }
+
     };
     
 })(jQuery);
