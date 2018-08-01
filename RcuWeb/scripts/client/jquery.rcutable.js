@@ -77,7 +77,8 @@
                             break;
                         case ($.rcu.conststr.tag.alertview + "_0")://异常报警
                             tabInst.fnClearTable(false);
-                            tabInst.fnAddData(aaData);
+                            var newAAData = getNewAAData(aaData);
+                            tabInst.fnAddData(newAAData);
                             focusOnAlert(aaData);
                             break;
                     }
@@ -115,7 +116,7 @@
                         "bPaginate":true,
                         "aaSorting": [[ 0, "desc" ]],
                         "aoColumns" : aoColumns,
-                        "aaData" : aaData,
+                        "aaData" : getNewAAData(aaData),
                         "bSort" : false,
                         "bAutoWidth": true
                     };
@@ -136,7 +137,7 @@
         }
 
         function focusOnAlert(aaData) {
-        var j2ndLi = $($('#rcu-td-monitor ul').children('li')[2]);
+            var j2ndLi = $($('#rcu-td-monitor ul').children('li')[2]);
             if (!j2ndLi.hasClass('ui-state-active')) {
                 for (var i = 0; i < aaData.length; ++i) {
                     if (aaData[i][10] === '有需求') {
@@ -145,6 +146,14 @@
                     }
                 }
             }
+        }
+
+        function getNewAAData(aaData) {
+            var newAAData = JSON.parse(JSON.stringify(aaData));
+            for(var i = 0; i < newAAData.length; ++i){
+                newAAData[i][10] = aaData[i][10] + '<button>关</button>';
+            }
+            return newAAData;
         }
 
     };
