@@ -80,6 +80,7 @@
                             var newAAData = getNewAAData(aaData);
                             tabInst.fnAddData(newAAData);
                             focusOnAlert(aaData);
+                            bindAADataEvent();
                             break;
                     }
                 }
@@ -123,6 +124,7 @@
                 var jMainTable = this.find("table");
                 var tabInst = jMainTable.dataTable(options);
                 $(this).data("inst",tabInst) ;
+                bindAADataEvent();
             }
             
             break;
@@ -151,9 +153,21 @@
         function getNewAAData(aaData) {
             var newAAData = JSON.parse(JSON.stringify(aaData));
             for(var i = 0; i < newAAData.length; ++i){
-                newAAData[i][10] = aaData[i][10] + '<button>关</button>';
+                newAAData[i][10] = aaData[i][10] + '<button class="rcu-waiter-alarm" id ="rcu-waiter-alarm-"' + aaData[i][0] + '>关</button>';
             }
             return newAAData;
+        }
+
+        function onClickWaiterAlarm(jEvent){
+            console.log(jEvent);
+        }
+
+        function bindAADataEvent(){
+            setTimeout( function delayBindAADataEvent(){
+                $('.rcu-waiter-alarm')
+                    .unbind('click')
+                    .bind('click', onClickWaiterAlarm);
+            }, 200);
         }
 
     };
