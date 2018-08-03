@@ -153,13 +153,34 @@
         function getNewAAData(aaData) {
             var newAAData = JSON.parse(JSON.stringify(aaData));
             for(var i = 0; i < newAAData.length; ++i){
-                newAAData[i][10] = aaData[i][10] + '<button class="rcu-waiter-alarm" id ="rcu-waiter-alarm-"' + aaData[i][0] + '>关</button>';
+                if(aaData[i][10] === '有需求'){
+                    var audioStatus = checkAudioStatus(aaData[i][0]);
+                    newAAData[i][10] = aaData[i][10] + '<button class="rcu-waiter-alarm" audio-open="' + audioStatus + '" id="rcu-waiter-alarm-' + aaData[i][0] + '">' + audioStatus + '</button>';
+                }
             }
             return newAAData;
         }
 
+        function checkAudioStatus(roomId){
+            var key = 'rcu-waiter-alarm-' + roomId;
+            var status = localStorage.getItem(key);
+            if(status === null || status === undefined){
+                status = true;
+                localStorage.setItem(key, status);
+            }
+            return status === 'true';
+        }
+
         function onClickWaiterAlarm(jEvent){
-            console.log(jEvent);
+            //console.log(jEvent);
+            //e.g. rcu-waiter-alarm-501
+            var jTarget = $(jEvent.target);
+            var key = jTarget.attr('id');
+            //toggle current audio
+            var status = localStorage.getItem(key);
+            status = status === 'true' ? 'false' : 'true';
+            localStorage.setItem(key, status);
+            jTarget.attr('audio-open', status);
         }
 
         function bindAADataEvent(){
