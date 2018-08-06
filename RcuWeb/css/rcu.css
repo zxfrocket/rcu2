@@ -272,3 +272,17 @@ div.light-bulb[value='1']
     text-overflow: ellipsis;
     float: left ;
 }
+
+.rcu-waiter-alarm{
+    width: 32px;
+    height: 32px;
+    background-size: cover;
+}
+
+.rcu-waiter-alarm[audio-open='true']{
+    background-image: url('../resource/image/extra/waiter_audio_yes.png');
+}
+
+.rcu-waiter-alarm[audio-open='false']{
+    background-image: url('../resource/image/extra/waiter_audio_no.png');
+}
