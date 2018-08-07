@@ -152,21 +152,34 @@
 
         function getNewAAData(aaData) {
             var newAAData = JSON.parse(JSON.stringify(aaData));
-            var validArr = [];
+            var validMap = {};
             for(var i = 0; i < newAAData.length; ++i){
                 if(aaData[i][10] === '有需求'){
                     var audioStatus = checkAudioStatus(aaData[i][0]);
                     newAAData[i][10] = aaData[i][10] + '<button class="rcu-waiter-alarm" audio-open="' + audioStatus + '" id="rcu-waiter-alarm-' + aaData[i][0] + '"></button>';
-                    validArr.push(aaData[i][0]);
+                    validMap[aaData[i][0]] = true;
                 }
             }
-            removeInvalidWaiters(validArr);
+            removeInvalidWaiters(validMap);
             return newAAData;
         }
 
-        function removeInvalidWaiters(validArr){
+        function removeInvalidWaiters(validMap){
             //get All roomID, 写死了，只针对嘉里
-            var firstFloor = $.rcu.get("common").getFirstFloor();
+            var firstFloor = 4;
+            var lastFloor = 21;
+            var firstRoom = 1;
+            var lastRoom = 46;
+            for(var i = firstFloor; i <= lastFloor; ++i ){
+                for(var j = firstRoom; j <= lastRoom; ++j ){
+                    var roomId = i* 100 + j;
+                    if(validMap[roomId] !== true){
+                        var key = 'rcu-waiter-alarm-' + roomId;
+                        localStorage.removeItem(key);
+                    }
+                }
+                
+            }
         }
 
         function checkAudioStatus(roomId){
