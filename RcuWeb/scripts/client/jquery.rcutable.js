@@ -155,8 +155,8 @@
             var validMap = {};
             for(var i = 0; i < newAAData.length; ++i){
                 if(aaData[i][10] === '有需求'){
-                    var audioStatus = checkAudioStatus(aaData[i][0]);
-                    newAAData[i][10] = aaData[i][10] + '<button class="rcu-waiter-alarm" audio-open="' + audioStatus + '" id="rcu-waiter-alarm-' + aaData[i][0] + '"></button>';
+                    var muted = checkAudioMuted(aaData[i][0]);
+                    newAAData[i][10] = aaData[i][10] + '<audio class="rcu-waiter-alarm" ' + (muted ? 'muted' : '') + ' id="rcu-waiter-alarm-' + aaData[i][0] + '"' + ' controls src="resource/sound/waiter_alarm.mp3" autoplay></audio>';
                     validMap[aaData[i][0]] = true;
                 }
             }
@@ -182,33 +182,24 @@
             }
         }
 
-        function checkAudioStatus(roomId){
+        function checkAudioMuted(roomId){
             var key = 'rcu-waiter-alarm-' + roomId;
             var status = localStorage.getItem(key);
-            if(status === null || status === undefined){
-                status = true;
-                localStorage.setItem(key, status);
-            }
-            return status === 'true';
+            return Boolean(status);
         }
 
-        function onClickWaiterAlarm(jEvent){
-            //console.log(jEvent);
-            //e.g. rcu-waiter-alarm-501
+        function onVolumnChange(jEvent){
             var jTarget = $(jEvent.target);
             var key = jTarget.attr('id');
-            //toggle current audio
-            var status = localStorage.getItem(key);
-            status = status === 'true' ? 'false' : 'true';
-            localStorage.setItem(key, status);
-            jTarget.attr('audio-open', status);
+            var muted = jEvent.target.muted;
+            localStorage.setItem(key, muted);
         }
 
-        function bindAADataEvent(){
+       function bindAADataEvent(){
             setTimeout( function delayBindAADataEvent(){
                 $('.rcu-waiter-alarm')
-                    .unbind('click')
-                    .bind('click', onClickWaiterAlarm);
+                    .unbind('volumechange')
+                    .bind('volumechange', onVolumnChange);
             }, 200);
         }
 
