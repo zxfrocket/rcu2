@@ -156,7 +156,7 @@
             for(var i = 0; i < newAAData.length; ++i){
                 if(aaData[i][10] === '有需求'){
                     var muted = checkAudioMuted(aaData[i][0]);
-                    newAAData[i][10] = aaData[i][10] + '<audio class="rcu-waiter-alarm" ' + (muted ? 'muted' : '') + ' id="rcu-waiter-alarm-' + aaData[i][0] + '"' + ' controls src="resource/sound/waiter_alarm.mp3" autoplay></audio>';
+                    newAAData[i][10] = aaData[i][10] + '<audio class="rcu-waiter-alarm" ' + (muted ? 'muted' : '') + ' id="rcu-waiter-alarm-' + aaData[i][0] + '"' + ' controls src="resource/sound/waiter_alarm.wav" autoplay loop></audio>';
                     validMap[aaData[i][0]] = true;
                 }
             }
