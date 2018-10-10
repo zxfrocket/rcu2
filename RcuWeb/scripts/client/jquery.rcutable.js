@@ -79,7 +79,7 @@
                             tabInst.fnClearTable(false);
                             var newAAData = getNewAAData(aaData);
                             tabInst.fnAddData(newAAData);
-                            focusOnAlert(aaData);
+                            //focusOnAlert(aaData);
                             bindAADataEvent();
                             break;
                     }
