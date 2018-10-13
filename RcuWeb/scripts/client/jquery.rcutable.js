@@ -80,8 +80,6 @@
                             tabInst.fnClearTable(false);
                             var newAAData = getNewAAData(aaData);
                             tabInst.fnAddData(newAAData);
-                            //focusOnAlert(aaData);
-                            bindAADataEvent();
                             break;
                     }
                 }
@@ -125,7 +123,6 @@
                 var jMainTable = this.find("table");
                 var tabInst = jMainTable.dataTable(options);
                 $(this).data("inst",tabInst) ;
-                bindAADataEvent();
             }
             
             break;
@@ -139,23 +136,21 @@
             return newData.slice(0,dertLen);
         }
 
-        function focusOnAlert(aaData) {
-            var j2ndLi = $($('#rcu-td-monitor ul').children('li')[2]);
-            if (!j2ndLi.hasClass('ui-state-active')) {
-                for (var i = 0; i < aaData.length; ++i) {
-                    if (aaData[i][10] === '有需求') {
-                        j2ndLi.find('a').trigger('click');
-                        break;
-                    }
-                }
-            }
-        }
-
         function initDockFrame(){
             var dock = document.getElementById('rcu-frame-dock');
             if(dock){
-                ul = document.createElement('ul');
+                var audio = document.createElement('audio');
+                //<audio class="rcu-waiter-alarm" ' + (muted ? 'muted' : '') + ' id="rcu-waiter-alarm-' + aaData[i][0] + '"' + ' controls src="resource/sound/waiter_alarm.wav" autoplay loop
+                audio.src = 'resource/sound/waiter_alarm.wav';
+                audio.controls = true;
+                audio.autoplay = true;
+                audio.loop = true;
+                audio.id = 'rcu-waiter-alert-audio';
+                
+                var ul = document.createElement('ul');
                 ul.id = 'ruc-waiter-list';
+
+                dock.appendChild(audio);
                 dock.appendChild(ul);
                 return ul;
             }
@@ -175,21 +170,25 @@
 
         //obj={roomId, roomName, timeStamp, alert}
         function getWaiterItem(obj){
-            var div1 = document.createElement('div');
-            var text1 = document.createTextNode(obj.roomId);
-            div1.appendChild(text1);
+            // var div1 = document.createElement('div');
+            // var text1 = document.createTextNode(obj.roomId);
+            // div1.appendChild(text1);
 
             var div2 = document.createElement('div');
             var text2 = document.createTextNode(obj.roomName);
-            div1.appendChild(text2);
+            div2.appendChild(text2);
 
             var div3 = document.createElement('div');
             var checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
+            checkbox.className = 'rcu-waiter-item-check';
+            checkbox.id = 'rcu-waiter-item-check-' + obj.roomId;
+            checkbox.name = obj.roomId;
+            checkbox.checked = !obj.alert;
             div3.appendChild(checkbox);
 
             var li = document.createElement('li');
-            li.appendChild(div1);
+            //li.appendChild(div1);
             li.appendChild(div2);
             li.appendChild(div3);
             
@@ -205,6 +204,38 @@
             return lis;
         }
 
+        function checkWhetherMute(){
+            var audio = document.getElementById('rcu-waiter-alert-audio');
+            var globalValidMap = $.rcu.waiterVaildMap;
+            audio.muted = true;
+            for(var key in globalValidMap){
+                if(globalValidMap[key].alert){
+                    audio.muted = false;
+                    break;
+                }
+            }
+            
+        }
+
+        function onWaiterItemCheck(event){
+            var roomId = event.target.name;
+            var globalValidMap = $.rcu.waiterVaildMap;
+            globalValidMap[roomId].alert = !globalValidMap[roomId].alert;
+            checkWhetherMute();
+        }
+
+        function unbindWaiterItemCheck(){
+            if($.rcu.globalWaiterChecks && $.rcu.globalWaiterChecks.unbind){
+                $.rcu.globalWaiterChecks.unbind('change');
+                $.rcu.globalWaiterChecks = null;
+            }
+        }
+
+        function bindWaiterItemCheck(){
+            $.rcu.globalWaiterChecks = $('.rcu-waiter-item-check');
+            $.rcu.globalWaiterChecks.bind('change', onWaiterItemCheck);
+        }
+
         function displayWaiterList(validMap){
             var ul = document.getElementById('ruc-waiter-list');
             if(!ul){
@@ -216,6 +247,7 @@
             var lis = getWaiterItems(arr);
             if(lis.length === 0){
                 $(ul).empty();
+                unbindWaiterItemCheck();
                 $.rcu.waiterVaildMap = {};
                 return ;
             }
@@ -224,7 +256,10 @@
                 fragment.appendChild(lis[i]);
             }
             $(ul).empty();
+            unbindWaiterItemCheck();
             ul.appendChild(fragment);
+            bindWaiterItemCheck();
+            checkWhetherMute();
         }
 
         function getWaiterTimestamp(roomId){
@@ -235,20 +270,26 @@
             return (new Date()).getTime();
         }
 
+        function getWaiterAlert(roomId){
+            var globalValidMap = $.rcu.waiterVaildMap;
+            if(globalValidMap[roomId]){
+                return globalValidMap[roomId].alert;
+            }
+            return true;
+        }
+
         function getNewAAData(aaData) {
             var newAAData = JSON.parse(JSON.stringify(aaData));
             var globalValidMap = $.rcu.waiterVaildMap;
             var validMap = {};
             for(var i = 0; i < newAAData.length; ++i){
                 if(aaData[i][10] === '有需求'){
-                    var muted = checkAudioMuted(aaData[i][0]);
-                    newAAData[i][10] = aaData[i][10] + '<audio class="rcu-waiter-alarm" ' + (muted ? 'muted' : '') + ' id="rcu-waiter-alarm-' + aaData[i][0] + '"' + ' controls src="resource/sound/waiter_alarm.wav" autoplay loop></audio>';
                     var roomId = aaData[i][0];
                     validMap[roomId] = {
                         roomId: aaData[i][0],
                         roomName: aaData[i][1],
                         timestamp: getWaiterTimestamp(roomId),
-                        alert: true
+                        alert: getWaiterAlert(roomId)
                     };
                     globalValidMap[roomId] = validMap[roomId];
                 }
@@ -260,6 +301,7 @@
         }
 
         function removeInvalidWaiters(validMap){
+            var globalValidMap = $.rcu.waiterVaildMap;
             //get All roomID, 写死了，只针对嘉里19-21层
             var firstFloor = 4;
             var lastFloor = 21;
@@ -268,34 +310,12 @@
             for(var i = firstFloor; i <= lastFloor; ++i ){
                 for(var j = firstRoom; j <= lastRoom; ++j ){
                     var roomId = i* 100 + j;
-                    if(validMap[roomId] && validMap[roomId].alert !== true){
-                        var key = 'rcu-waiter-alarm-' + roomId;
-                        localStorage.removeItem(key);
+                    if(globalValidMap[roomId] && !validMap[roomId]){
+                        delete globalValidMap[roomId];
                     }
                 }
                 
             }
-        }
-
-        function checkAudioMuted(roomId){
-            var key = 'rcu-waiter-alarm-' + roomId;
-            var status = localStorage.getItem(key);
-            return Boolean(status);
-        }
-
-        function onVolumnChange(jEvent){
-            var jTarget = $(jEvent.target);
-            var key = jTarget.attr('id');
-            var muted = jEvent.target.muted;
-            localStorage.setItem(key, muted);
-        }
-
-       function bindAADataEvent(){
-            setTimeout( function delayBindAADataEvent(){
-                $('.rcu-waiter-alarm')
-                    .unbind('volumechange')
-                    .bind('volumechange', onVolumnChange);
-            }, 200);
         }
 
     };
