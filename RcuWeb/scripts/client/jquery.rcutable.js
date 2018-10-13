@@ -214,6 +214,11 @@
                     break;
                 }
             }
+            if(audio.muted){
+                audio.pause();
+            } else{
+                audio.play();
+            }
             
         }
 
