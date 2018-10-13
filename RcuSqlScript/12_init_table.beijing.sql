@@ -196,7 +196,9 @@ INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_nigh
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_night_30','欢夜30','p_light_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_night_31','欢夜31','p_light_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_night_32','欢夜32','p_light_state');
-INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('wind_level_set','风速控制','p_wind_level');
+INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('air_temp_set','空调温度设置(℃)','p_temp');
+INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('wind_level_set','风速控制','p_in_wind_level');
+INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('temp_addr_set','温控地址','p_temp_addr');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('valve_state_set','阀门控制','p_valve_state');
 
 /*set_define中[]之间的变量名与RCU_CMD_CONFIG中的unit_id字段一致*/
@@ -279,8 +281,9 @@ INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('light_set_27',0
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('light_set_26',0xA44A,'var ret = [light_state_26];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('light_set_25',0xA44A,'var ret = [light_state_25];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('room_id',0xA55A,'var ret = [floorNo]*100 + [roomNo];ret = ret.toString();');
-INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('wind_level_set',0xA55A,'var ret = [wind_level];ret = ret.toString();');
-INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('valve_state_set',0xA55A,'var ret = [valve_state];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('air_temp_set',0xA55A,'var ret = [air_temp_set];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('wind_level_set',0xA55A,'var ret = [wind_level_set];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('temp_addr_set',0xA55A,'var ret = [temp_addr_set];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('room_id',0xA66A,'var ret = [floorNo]*100 + [roomNo];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES  ('temp_ctrl_up',0xA66A,'var ret = [temp_ctrl_up];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES  ('temp_ctrl_dn',0xA66A,'var ret = [temp_ctrl_dn];ret = ret.toString();');
@@ -494,8 +497,9 @@ INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_p
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xA55A,3,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xA55A,4,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xA55A,5,1,0,8,0);
-INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('wind_level_set',0xA55A,6,1,5,3,0);
-INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('valve_state_set',0xA55A,6,1,3,2,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('air_temp_set',0xA55A,6,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('wind_level_set',0xA55A,7,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('temp_addr_set',0xA55A,10,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('floorNo',0xA66A,2,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xA66A,3,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xA66A,4,1,0,8,0);
@@ -663,8 +667,9 @@ INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xA55A,1,3,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xA55A,1,4,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xA55A,1,5,1,0,8,0);
-INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('wind_level_set',0xA55A,1,6,1,5,3,0);
-INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('valve_state_set',0xA55A,1,6,1,3,2,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('air_temp_set',0xA55A,1,6,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('wind_level_set',0xA55A,1,7,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('temp_addr_set',0xA55A,1,10,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('floorNo',0xA66A,1,2,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xA66A,1,3,1,0,8,1);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xA66A,1,4,1,0,8,0);
@@ -813,8 +818,9 @@ INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_light_ctrl',
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_light_ctrl','light_set_30',29);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_light_ctrl','light_set_31',30);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_light_ctrl','light_set_32',31);
-INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_air_ctrl','wind_level_set',0);
-INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_air_ctrl','valve_state_set',1);
+INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_air_ctrl','air_temp_set',0);
+INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_air_ctrl','wind_level_set',1);
+INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_air_ctrl','temp_addr_set',2);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_temp_ctrl','temp_ctrl_up',0);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_temp_ctrl','temp_ctrl_dn',1);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_temp_ctrl','temp_hold_up',2);
@@ -1118,6 +1124,10 @@ INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp'
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',131,'-3℃');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',132,'-4℃');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',133,'-5℃');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_addr',0,'全部');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_addr',193,'地址1');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_addr',194,'地址2');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_addr',195,'地址3');
 
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_ctrl',0,'NO');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_ctrl',1,'YES');
