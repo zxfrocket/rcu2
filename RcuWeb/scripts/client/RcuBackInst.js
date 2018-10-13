@@ -34,6 +34,7 @@ function RcuBackInst()
                              $.rcu.conststr.tag.cmd_night_set,
                              $.rcu.conststr.tag.cmd_wind_set,
                              $.rcu.conststr.tag.cmd_temp_comp,
+                             $.rcu.conststr.tag.cmd_waiter_ctrl,
                              $.rcu.conststr.tag.cmd_in_set,
                              $.rcu.conststr.tag.cmd_geotherm_set,
                              $.rcu.conststr.tag.cmd_link_set,
@@ -123,6 +124,9 @@ function RcuBackInst()
                     break;
                 case $.rcu.conststr.tag.cmd_temp_comp:
                     obj = new RcuCmdTempComp();
+                    break;
+                case $.rcu.conststr.tag.cmd_waiter_ctrl:
+                    obj = new RcuCmdWaiterCtrl();
                     break;
                 case $.rcu.conststr.tag.cmd_in_set:
                     obj = new RcuCmdInSet();

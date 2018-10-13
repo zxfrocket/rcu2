@@ -281,6 +281,7 @@
                         case $.rcu.conststr.tag.cmd_night_set:
                         case $.rcu.conststr.tag.cmd_wind_set:
                         case $.rcu.conststr.tag.cmd_temp_comp:
+                        case $.rcu.conststr.tag.cmd_waiter_ctrl:
                         case $.rcu.conststr.tag.cmd_in_set:
                         case $.rcu.conststr.tag.cmd_geotherm_set:
                         case $.rcu.conststr.tag.cmd_link_set:
@@ -354,6 +355,7 @@
                         case $.rcu.conststr.tag.cmd_mode_set:
                         case $.rcu.conststr.tag.cmd_wind_set:
                         case $.rcu.conststr.tag.cmd_temp_comp:
+                        case $.rcu.conststr.tag.cmd_waiter_ctrl:
                         case $.rcu.conststr.tag.cmd_in_set:
                         case $.rcu.conststr.tag.cmd_geotherm_set:
                         case $.rcu.conststr.tag.cmd_link_set:
@@ -414,6 +416,7 @@
                         case $.rcu.conststr.tag.cmd_mode_set:
                         case $.rcu.conststr.tag.cmd_wind_set:
                         case $.rcu.conststr.tag.cmd_temp_comp:
+                        case $.rcu.conststr.tag.cmd_waiter_ctrl:
                         case $.rcu.conststr.tag.cmd_in_set:
                         case $.rcu.conststr.tag.cmd_light_ctrl:
                         case $.rcu.conststr.tag.cmd_day_set:
@@ -592,6 +595,9 @@
             break;
         case $.rcu.conststr.tag.cmd_temp_comp:
             jTBody.rcuwnd_form_CmdTempComp(tag);
+            break;
+        case $.rcu.conststr.tag.cmd_waiter_ctrl:
+            jTBody.rcuwnd_form_CmdWaiterCtrl(tag);
             break;
         case $.rcu.conststr.tag.cmd_in_set:
             jTBody.rcuwnd_form_CmdInSet(tag);
@@ -1224,6 +1230,12 @@
         createCommonCmd(tag,this);
         return this;
     };
+
+    $.fn.rcuwnd_form_CmdWaiterCtrl = function(tag)
+    {
+        createCommonCmd(tag,this);
+        return this;
+    };
     
     $.fn.rcuwnd_form_CmdInSet = function(tag)
     {
@@ -1324,6 +1336,9 @@
             $.rcu.get(name).submit(event);
             break;
         case $.rcu.conststr.tag.cmd_temp_comp:
+            $.rcu.get(name).submit(event);
+            break;
+        case $.rcu.conststr.tag.cmd_waiter_ctrl:
             $.rcu.get(name).submit(event);
             break;
         case $.rcu.conststr.tag.cmd_in_set:
@@ -1428,6 +1443,8 @@
         case $.rcu.conststr.tag.cmd_wind_set:
             break;
         case $.rcu.conststr.tag.cmd_temp_comp:
+            break;
+        case $.rcu.conststr.tag.cmd_waiter_ctrl:
             break;
         case $.rcu.conststr.tag.cmd_in_set:
             break;
@@ -1749,6 +1766,7 @@
         case $.rcu.conststr.tag.cmd_night_set:
         case $.rcu.conststr.tag.cmd_wind_set:
         case $.rcu.conststr.tag.cmd_temp_comp:
+        case $.rcu.conststr.tag.cmd_waiter_ctrl:
         case $.rcu.conststr.tag.cmd_in_set:
         case $.rcu.conststr.tag.cmd_geotherm_set:
         case $.rcu.conststr.tag.cmd_link_set:

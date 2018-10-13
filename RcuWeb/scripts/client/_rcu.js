@@ -107,7 +107,8 @@
                 "config_opera": "config_opera",
                 "config_alert": "config_alert",
                 "config_mode": "config_mode",
-                "alert_temp": "alert_temp"
+                "alert_temp": "alert_temp",
+                "cmd_waiter_ctrl": "cmd_waiter_ctrl"
             },
             "iconSize":[16,24,32,48,64,72,96,128,256,512,1024],
             "size":

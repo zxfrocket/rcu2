@@ -85,6 +85,11 @@ div.tool-items-cell[name="cmd_temp_comp"] > div:first-child
     background-image: url(../../resource/image/toolItem/1024/toolbar_cmd_temp_comp.png);
 }
 
+div.tool-items-cell[name="cmd_waiter_ctrl"] > div:first-child
+{
+    background-image: url(../../resource/image/toolItem/1024/toolbar_cmd_waiter_ctrl.png);
+}
+
 div.tool-items-cell[name="cmd_temp_ctrl"] > div:first-child
 {
     background-image: url(../../resource/image/toolItem/1024/toolbar_cmd_temp_ctrl.png);

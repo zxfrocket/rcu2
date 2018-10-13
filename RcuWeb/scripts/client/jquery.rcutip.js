@@ -342,6 +342,9 @@
                 case "cmd_temp_comp":
                     $.rcu.get($.rcu.conststr.tag.cmd_temp_comp).open({"title":desc,"icon":icon});
                     break;
+                case "cmd_waiter_ctrl":
+                    $.rcu.get($.rcu.conststr.tag.cmd_waiter_ctrl).open({"title":desc,"icon":icon});
+                    break;
                 case "cmd_in_set":
                     $.rcu.get($.rcu.conststr.tag.cmd_in_set).open({"title":desc,"icon":icon});
                     break;

@@ -31,6 +31,7 @@ INSERT INTO RCU_CMD_DEFINE (cmd_name,cmd_id,cmd_mean,cmd_pos) VALUES('cmd_day_se
 INSERT INTO RCU_CMD_DEFINE (cmd_name,cmd_id,cmd_mean,cmd_pos) VALUES('cmd_night_set',0xA00A,'欢迎夜晚',9);
 INSERT INTO RCU_CMD_DEFINE (cmd_name,cmd_id,cmd_mean,cmd_pos) VALUES('cmd_wind_set',0xABBA,'风机设置',10);
 INSERT INTO RCU_CMD_DEFINE (cmd_name,cmd_id,cmd_mean,cmd_pos) VALUES('cmd_temp_comp',0xACCA,'温度补偿',11);
+INSERT INTO RCU_CMD_DEFINE (cmd_name,cmd_id,cmd_mean,cmd_pos) VALUES('cmd_waiter_ctrl',0xB22B,'远程侍者',12);
 
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name) VALUES('cmd','命令');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name) VALUES('floorNo','楼层号');
@@ -98,6 +99,7 @@ INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('run_time',
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('stop_time','风机停止设置(分)','p_work_time');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('set_wind_level','风机风速设置','p_wind_level');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('temp_comp','温度补偿设置(℃)','p_temp_comp');
+INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('waiter_ctrl','远程侍者服务','p_waiter_ctrl');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_set_1','灯1','p_light_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_set_2','灯2','p_light_state');
 INSERT INTO RCU_TITLE_DEFINE (title_id,title_name,title_desc) VALUES('light_set_3','灯3','p_light_state');
@@ -363,6 +365,8 @@ INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('stop_time',0xAB
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('set_wind_level',0xABBA,'var ret = [set_wind_level];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('room_id',0xACCA,'var ret = [floorNo]*100 + [roomNo];ret = ret.toString();');
 INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('temp_comp',0xACCA,'var ret = [temp_comp];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('room_id',0xB22B,'var ret = [floorNo]*100 + [roomNo];ret = ret.toString();');
+INSERT INTO RCU_SET_CONFIG (set_id,cmd_data,set_define) VALUES ('waiter_ctrl',0xB22B,'var ret = [waiter_ctrl];ret = ret.toString();');
 
 DELETE FROM RCU_DATA_DIRECTION;
 INSERT INTO RCU_DATA_DIRECTION (log_type,type_mean) VALUES(0,'接收');
@@ -380,6 +384,7 @@ INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_day_set',0,13)
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_night_set',0,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_wind_set',0,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_temp_comp',0,13);
+INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_waiter_ctrl',0,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_poll',1,9);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_night_set',1,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_card_delay',1,13);
@@ -392,6 +397,7 @@ INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_in_set',1,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_day_set',1,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_wind_set',1,13);
 INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_temp_comp',1,13);
+INSERT INTO RCU_CMD_LEN (cmd_name,cmd_direct,cmd_len) VALUES('cmd_waiter_ctrl',1,13);
 
 /*接收时的配置*/
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd',0x0000,4,2,0,16,0);
@@ -595,6 +601,11 @@ INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_p
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xACCA,4,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xACCA,5,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('temp_comp',0xACCA,6,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('floorNo',0xB22B,2,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xB22B,3,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xB22B,4,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xB22B,5,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('waiter_ctrl',0xB22B,6,1,0,8,0);
 /*发送时的配置*/
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd',0x0000,1,4,2,0,16,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('floorNo',0x8008,1,2,1,0,8,1);
@@ -759,6 +770,11 @@ INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xACCA,1,4,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xACCA,1,5,1,0,8,0);
 INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('temp_comp',0xACCA,1,6,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('floorNo',0xB22B,1,2,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('roomNo',0xB22B,1,3,1,0,8,1);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd1',0xB22B,1,4,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('cmd2',0xB22B,1,5,1,0,8,0);
+INSERT INTO RCU_CMD_CONFIG (unit_id,cmd_data,cmd_direct,begin_byte_pos,byte_len,begin_bit_pos,bit_len,data_form) VALUES ('waiter_ctrl',0xB22B,1,6,1,0,8,0);
 
 
 
@@ -876,6 +892,7 @@ INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_wind_set','r
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_wind_set','stop_time',1);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_wind_set','set_wind_level',2);
 INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_temp_comp','temp_comp',0);
+INSERT INTO RCU_CMD_CONTENT (cmd_name,cmd_item,cmd_pos) VALUES('cmd_waiter_ctrl','waiter_ctrl',0);
 
 DELETE FROM RCU_PARA_DEFINE WHERE para_name <> 'p_floor_no' AND para_name <> 'p_room_no';
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_holder',0,'');
@@ -1101,6 +1118,10 @@ INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp'
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',131,'-3℃');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',132,'-4℃');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_temp_comp',133,'-5℃');
+
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_ctrl',0,'NO');
+INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_waiter_ctrl',1,'YES');
+
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_work_time',5,'5分');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_work_time',10,'10分');
 INSERT INTO RCU_PARA_DEFINE(para_name,para_value,para_desc) VALUES('p_work_time',15,'15分');
@@ -1315,7 +1336,7 @@ INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_lev
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','card_delay','拔卡延迟',1,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','door_clock','门钟设置',2,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','light_ctrl','远程灯组',3,2);
-INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','air_ctrl','远程空调',4,0);
+INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','air_ctrl','远程空调',4,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','temp_ctrl','温度限制',5,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','mode_set','模式设置',6,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','in_set','入住设置',7,2);
@@ -1323,6 +1344,7 @@ INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_lev
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','night_set','欢迎夜晚',9,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','wind_set','风机设置',10,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','temp_comp','温度补偿',11,2);
+INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','waiter_ctrl','远程侍者',12,2);
 /*TODO 组合搜索 暂时改名 状态搜索*/
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('search','complex','状态搜索',0,3);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('config','poll','轮检设置',0,2);

@@ -252,7 +252,9 @@ function RcuMoTemp(opt)
               arr1d.push(parseInt(data[i].temp)) ;
             }
 
-            ticks.push(getPrecision(data[i].time));
+            if(data[i].time){
+                ticks.push(getPrecision(data[i].time));
+            }
           }
           var ticksY = [0,5,10,15,20,25,30,35,40,45,50];
           if(2 == data[0].index){
