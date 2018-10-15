@@ -189,6 +189,8 @@ light_night_7 int NULL DEFAULT 0,
 light_night_8 int NULL DEFAULT 0,
 light_night_9 int NULL DEFAULT 0,
 /*删除远程空调控制valve_state_set和wind_level_set，因为空调设置后的状态，直接反应到了空调状态本身*/
+/*北京中国大饭店又给加上了 2018-10-16*/
+wind_level_set int NULL DEFAULT 1,
 PRIMARY KEY(room_id),
 FOREIGN KEY (suite_id) REFERENCES RCU_ROOM_STATE(room_id));
 
