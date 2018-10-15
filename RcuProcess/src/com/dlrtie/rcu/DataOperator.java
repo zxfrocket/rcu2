@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLTransactionRollbackException;
 
 public class DataOperator
 {
@@ -150,7 +151,7 @@ public class DataOperator
             ++this.deadLockCount;
             if(this.deadLockCount > 20){
                 this.deadLockCount = 0;
-                throws(e);
+                throw(e);
             }
             this.ExcuteCmd(strCmd);
         }
