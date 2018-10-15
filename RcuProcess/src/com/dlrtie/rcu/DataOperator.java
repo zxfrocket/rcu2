@@ -17,6 +17,7 @@ public class DataOperator
     private String dbUserString;
     private String dbPassString;
     private ArrayList<ResultSet> retArr = new ArrayList<ResultSet>();
+    private int deadLockCount = 0;
     
 //以下为公共函数
     public DataOperator()
@@ -142,6 +143,16 @@ public class DataOperator
         catch(MySQLSyntaxErrorException e)
         {
             CommonCalc.Instance().RecordErrorLog("sql",e.toString(), e.getStackTrace());
+        }
+        catch(MySQLTransactionRollbackException e)
+        {
+            CommonCalc.Instance().RecordErrorLog("sql",e.toString(), e.getStackTrace());
+            ++this.deadLockCount;
+            if(this.deadLockCount > 20){
+                this.deadLockCount = 0;
+                throws(e);
+            }
+            this.ExcuteCmd(strCmd);
         }
     }
     

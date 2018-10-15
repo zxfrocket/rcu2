@@ -28,6 +28,16 @@ public class RcuPoll
                     Thread.sleep(1000);
                 }
             }
+            catch (MySQLTransactionRollbackException e) 
+            {
+                CommonCalc.Instance().RecordErrorLog("poll",e.toString(), e.getStackTrace());
+                /**
+                 * 先看DataOperator MySQLTransactionRollbackException e 的处理
+                 * 如果执行了20次死锁，还是死锁，那么这一条处理就忽略，继续下一条
+                 * 不然总是在低楼层打转转
+                 */
+                Thread.sleep(1000);
+            }
             catch (Exception e) 
             {
                 try
