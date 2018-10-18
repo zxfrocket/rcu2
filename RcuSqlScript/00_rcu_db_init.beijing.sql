@@ -278,10 +278,10 @@ BEGIN
     DECLARE lightNum int;
     DECLARE lightIndex int;
     DECLARE lightName varchar(8);
-    SET @beginFloorNo = 5 ;
+    SET @beginFloorNo = 4 ;
     SET @beginRoomNo = 1 ;
-    SET @endFloorNo = 21 ;
-    SET @endRoomNo = 32 ;
+    SET @endFloorNo =  21;
+    SET @endRoomNo = 50 ;
     SET @lightNum = 32 ;
     SET @lightIndex = 0 ;
     SET @floorNo = @beginFloorNo ;
