@@ -228,11 +228,12 @@ class RcuCmd extends RcuObject
             $priVal = util::getWorkOrderPriority($db, rcuconst::$priority['refresh']);
         }
         //入住设置(只是在数据库设置上，不发送)
-        else if($cmd == 0xA88A)
-        {
-            $orderType = 2;
-            $priVal = util::getWorkOrderPriority($db, rcuconst::$priority['setcmd']);
-        }
+        //北京大饭店后来改成发送了
+        // else if($cmd == 0xA88A)
+        // {
+        //     $orderType = 2;
+        //     $priVal = util::getWorkOrderPriority($db, rcuconst::$priority['setcmd']);
+        // }
         else
         {
             $orderType = 1 ;
