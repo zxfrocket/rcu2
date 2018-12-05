@@ -168,16 +168,23 @@ function RcuBackInst()
                     obj = new RcuConfigMode();
                     break;
                 case $.rcu.conststr.tag.monitor:
-                    obj = new RcuMonitor({"target":$("div#rcu-frame-monitor").children("div#tab-mowrp-house")});
+                    var jHouse = $("div#rcu-frame-monitor").children("div#tab-mowrp-house");
+                    obj = new RcuMonitor({"target":jHouse});
+                    hideMonitor(jHouse);
                     break;
                 case $.rcu.conststr.tag.searchview:
-                    obj = new RcuSearchView({"target":$("div#rcu-frame-monitor").children("div#tab-mowrp-search")});
+                    var jSearch = $("div#rcu-frame-monitor").children("div#tab-mowrp-search");
+                    obj = new RcuSearchView({"target":jSearch});
+                    hideMonitor(jSearch);
                     break;
                 case $.rcu.conststr.tag.alertview:
-                    obj = new RcuAlertView({"target":$("div#rcu-frame-monitor").children("div##tab-mowrp-alert")});
+                    var jAlert = $("div#rcu-frame-monitor").children("div##tab-mowrp-alert");
+                    obj = new RcuAlertView({"target":jAlert});
                     break;
                 case $.rcu.conststr.tag.logview:
-                    obj = new RcuLogView({"target":$("div#rcu-frame-monitor").children("div#tab-mowrp-log")});
+                    var jLog = $("div#rcu-frame-monitor").children("div#tab-mowrp-log");
+                    obj = new RcuLogView({"target":jLog});
+                    hideMonitor(jLog);
                     break;
                 }
                 
@@ -202,6 +209,14 @@ function RcuBackInst()
         RcuBackInst.prototype.send = function (opt) 
         {
         };
+
+        function hideMonitor(jMonitor){
+            //for waiter, only dispay alert window and waiter dock
+            var userName = $.rcu.get("login").getUserName();
+            if (userName === 'waiter') {
+                jMonitor.css("visibility", "hidden");
+            }
+        }
         
 /**
  * private method

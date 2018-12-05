@@ -40,6 +40,7 @@
                      .width(w1)
                      .height(contentH)
                      .css("margin","0px 0px 0px 0px");
+                hideItem(jItem);
                 obj = new RcuToolBar({"target":jItem});
                 break;
             case $.rcu.conststr.tag.index:
@@ -54,6 +55,7 @@
                      .width(w2)
                      .height(contentH - 16 - getExHeadHeight())
                      .css("margin",topOffSet + "px 0px 0px " + leftOffSet + "px");
+                hideItem(jItem);
                 obj = new RcuIndex({"target":jItem});
                 break;
             case $.rcu.conststr.tag.monitor:
@@ -149,7 +151,15 @@
                   .css("margin","0px 0px 0px 0px");
             return false ;
         }
-        
+
+        function hideItem(jItem) {
+            //for waiter, only dispay alert window and waiter dock
+            var userName = $.rcu.get("login").getUserName();
+            if (userName === 'waiter') {
+                jItem.css("visibility", "hidden");
+            }
+        }
+
         return this;
     };
     
