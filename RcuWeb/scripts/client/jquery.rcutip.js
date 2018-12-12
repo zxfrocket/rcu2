@@ -181,6 +181,7 @@
                                      .css("margin-top",cellTop + "px")
                                      .css("margin-left",cellLeft + "px")
                                      .css("border-radius",cellRadius);
+                                hideCell(jCell, subName);
                                 var jCellIcon = $("<div>");
                                 var jCellText = $("<div>");
                                 jCell.append(jCellIcon);
@@ -272,6 +273,14 @@
             break;
         }
         return this ;
+
+        function hideCell(jCell, subName) {
+            //for waiter, only dispay alert window and waiter dock
+            var userName = $.rcu.get("login").getUserName();
+            if (userName === 'waiter' && subName !== 'waiter_ctrl') {
+                jCell.css("visibility", "hidden");
+            }
+        }
         
         function respItemClick(event)
         {

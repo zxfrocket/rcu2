@@ -49,6 +49,7 @@
                                     .height(hOuter)
                                     .css("float","left")
                                     .css("border-radius",dispParam.outer.radius + "px");
+                        hideToolItem(jToolItemOuter, curName);
                         jToolItemOuter.append(jToolItemInner);
                         jToolWrp.append(jToolItemOuter);
                     }
@@ -65,5 +66,13 @@
         
         return this;
     };
+
+    function hideToolItem(jToolItemOuter, curName){
+         //for waiter, only dispay alert window and waiter dock
+         var userName = $.rcu.get("login").getUserName();
+         if (userName === 'waiter' && curName !== 'cmd') {
+            jToolItemOuter.css("visibility", "hidden");
+         }
+    }
     
 })(jQuery);

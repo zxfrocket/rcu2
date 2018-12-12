@@ -40,7 +40,6 @@
                      .width(w1)
                      .height(contentH)
                      .css("margin","0px 0px 0px 0px");
-                hideItem(jItem);
                 obj = new RcuToolBar({"target":jItem});
                 break;
             case $.rcu.conststr.tag.index:

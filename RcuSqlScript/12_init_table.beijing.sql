@@ -1157,7 +1157,7 @@ DELETE FROM RCU_USER_INFO WHERE username = 'waiter';
 DELETE FROM RCU_USER_INFO WHERE level >= 100; 
 INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('zxf529','zxf529',now(),0,now(),0);
 INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('admin','admin',now(),0,now(),1);
-INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('waiter','waiter',now(),0,now(),3);
+INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('waiter','waiter',now(),0,now(),2);
 INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('[RCU]',RAND(),now(),0,now(),100);
 INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('[LFC]',RAND(),now(),0,now(),100);
 INSERT INTO RCU_USER_INFO (username,password,reg_time,login_count,last_time,level)  VALUES ('[FLOOR]',RAND(),now(),0,now(),100);
