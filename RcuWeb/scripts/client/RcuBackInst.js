@@ -170,12 +170,10 @@ function RcuBackInst()
                 case $.rcu.conststr.tag.monitor:
                     var jHouse = $("div#rcu-frame-monitor").children("div#tab-mowrp-house");
                     obj = new RcuMonitor({"target":jHouse});
-                    hideMonitor(jHouse);
                     break;
                 case $.rcu.conststr.tag.searchview:
                     var jSearch = $("div#rcu-frame-monitor").children("div#tab-mowrp-search");
                     obj = new RcuSearchView({"target":jSearch});
-                    hideMonitor(jSearch);
                     break;
                 case $.rcu.conststr.tag.alertview:
                     var jAlert = $("div#rcu-frame-monitor").children("div##tab-mowrp-alert");
@@ -184,7 +182,6 @@ function RcuBackInst()
                 case $.rcu.conststr.tag.logview:
                     var jLog = $("div#rcu-frame-monitor").children("div#tab-mowrp-log");
                     obj = new RcuLogView({"target":jLog});
-                    hideMonitor(jLog);
                     break;
                 }
                 
@@ -210,14 +207,6 @@ function RcuBackInst()
         {
         };
 
-        function hideMonitor(jMonitor){
-            //for waiter, only dispay alert window and waiter dock
-            var userName = $.rcu.get("login").getUserName();
-            if (userName === 'waiter') {
-                jMonitor.css("visibility", "hidden");
-            }
-        }
-        
 /**
  * private method
  */
