@@ -54,7 +54,6 @@
                      .width(w2)
                      .height(contentH - 16 - getExHeadHeight())
                      .css("margin",topOffSet + "px 0px 0px " + leftOffSet + "px");
-                hideItem(jItem);
                 obj = new RcuIndex({"target":jItem});
                 break;
             case $.rcu.conststr.tag.monitor:
