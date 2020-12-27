@@ -5,3 +5,10 @@ tools/env
 tools/JavaServiceWrapper
 tools/jdk
 RcuService
+RcuProcess/bin
+RcuProcess/log
+.svn
+.idea
+.project
+.classpath
+.settings
