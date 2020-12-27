@@ -1309,7 +1309,7 @@ INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_lev
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','card_delay','拔卡延迟',1,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','door_clock','门钟设置',2,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','light_ctrl','远程灯组',3,2);
-INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','air_ctrl','远程空调',4,0);
+INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','air_ctrl','远程空调',4,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','temp_ctrl','温度限制',5,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','mode_set','模式设置',6,2);
 INSERT INTO RCU_TOOLBAR_ITEMS (tool_name,item_name,item_desc,item_pos,lowest_level) VALUES ('cmd','in_set','入住设置',7,2);

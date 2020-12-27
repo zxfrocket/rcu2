@@ -275,10 +275,10 @@ BEGIN
     DECLARE lightNum int;
     DECLARE lightIndex int;
     DECLARE lightName varchar(8);
-    SET @beginFloorNo = 5 ;
-    SET @beginRoomNo = 1 ;
-    SET @endFloorNo = 21 ;
-    SET @endRoomNo = 32 ;
+    SET @beginFloorNo = 7 ;
+    SET @beginRoomNo = 51 ;
+    SET @endFloorNo = 17 ;
+    SET @endRoomNo = 69 ;
     SET @lightNum = 32 ;
     SET @lightIndex = 0 ;
     SET @floorNo = @beginFloorNo ;
@@ -292,18 +292,18 @@ BEGIN
                 SET @roomName = (SELECT CAST(@roomID AS CHAR(4)));
             END  IF;
             PREPARE stmt1 FROM "INSERT INTO RCU_ROOM_STATE (room_id,suite_id,room_name) VALUES(?,?,?)";
-            PREPARE stmt2 FROM "INSERT INTO RCU_TEMP_RECORD (room_id,date_time) VALUES(?,'2011-12-31 23:59:59')" ;
+            PREPARE stmt2 FROM "INSERT INTO RCU_TEMP_RECORD (room_id,date_time) VALUES(?,'2020-12-01 23:59:59')" ;
             /*PRINT @sqlStr;*/
             EXECUTE stmt1 USING @roomID,@roomID,@roomName;
             EXECUTE stmt2 USING @roomID;
 
-            PREPARE stmt11 FROM "INSERT INTO RCU_SETTING_TEMP_RECORD (room_id,date_time) VALUES(?,'2011-12-31 23:59:59')" ;
+            PREPARE stmt11 FROM "INSERT INTO RCU_SETTING_TEMP_RECORD (room_id,date_time) VALUES(?,'2020-12-01 23:59:59')" ;
             /*PRINT @sqlStr;*/
             EXECUTE stmt11 USING @roomID;
-            PREPARE stmt12 FROM "INSERT INTO RCU_WIND_RECORD (room_id,date_time) VALUES(?,'2011-12-31 23:59:59')" ;
+            PREPARE stmt12 FROM "INSERT INTO RCU_WIND_RECORD (room_id,date_time) VALUES(?,'2020-12-01 23:59:59')" ;
             /*PRINT @sqlStr;*/
             EXECUTE stmt12 USING @roomID;
-            PREPARE stmt13 FROM "INSERT INTO RCU_CARD_RECORD (room_id,date_time) VALUES(?,'2011-12-31 23:59:59')" ;
+            PREPARE stmt13 FROM "INSERT INTO RCU_CARD_RECORD (room_id,date_time) VALUES(?,'2020-12-01 23:59:59')" ;
             /*PRINT @sqlStr;*/
             EXECUTE stmt13 USING @roomID;
 
