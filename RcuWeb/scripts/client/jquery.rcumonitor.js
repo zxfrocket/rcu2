@@ -331,7 +331,6 @@
                            .css("white-space","nowrap")
                            .css("text-overflow","ellipsis");
                     var jPanel = $("<div>").rcumo_panel({"action":$.rcu.conststr.action.init,"param":{"roomid":roomid,
-                                 "roomname":roomname,
                                  "layout":{"width":fw,"height":fh},"infos":infos.opinfos}});
                     this.append(jHFilm);
                     this.append(jFilm);
@@ -516,7 +515,6 @@
             if(!!param)
             {
                 var roomid = param.roomid ;
-                var roomname = param.roomname ;
                 var layout = param.layout ;
                 var w = layout.width ;
                 var h = layout.height ;
@@ -534,15 +532,13 @@
                         }
                         if(currentLevel <= 3)
                         {
-                            var jBtnTemp = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"roomname":roomname,"name":"temp","desc":"温度曲线"}});
+                            var jBtnTemp = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"name":"temp","desc":"温度曲线"}});
                             this.append(jBtnTemp);
                             //TODO 根据不同酒店，加载不同内容
-                            var jBtnSettingTemp = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"roomname":roomname,"name":"setting_temp","desc":"温度设置"}});
-                            this.append(jBtnSettingTemp);
-                            var jBtnWind = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"roomname":roomname,"name":"wind","desc":"风机状态"}});
-                            this.append(jBtnWind);
-                            var jBtnCard = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"roomname":roomname,"name":"card","desc":"门卡状态"}});
-                            this.append(jBtnCard);
+                            var jBtnTemp1 = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"name":"temp1","desc":"温度曲线1"}});
+                            this.append(jBtnTemp1);
+                            var jBtnTemp2 = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"name":"temp2","desc":"温度曲线2"}});
+                            this.append(jBtnTemp2);
                         }
                         /*var jBtnLog = $("<div>").rcumo_btn({"action":"init","param":{"roomid":roomid,"name":"log","desc":"日志信息"}});
                         this.append(jBtnLog);
@@ -775,7 +771,6 @@
             if(!!param)
             {
                 var roomid = param.roomid ;
-                var roomname = param.roomname;
                 var name = param.name ;//info layout temp log set
                 var desc = param.desc ;
                 
@@ -799,17 +794,8 @@
                             .attr("name",name)
                             .attr("desc",desc)
                             .data("roomid",roomid)
-                            .data("roomname",roomname)
                             .unbind("click")
                             .bind("click",respBtnClick);
-                    //显示温度曲线时要显示房间名，我已经忘记如何传递参数了，整个全局的吧
-                    if(!window.rcuRoomMap){
-                      window.rcuRoomMap = {};
-                    }
-                      var str = "{'" + roomid + "':null}";
-                      var pair = eval("(" + str + ")");
-                      pair[roomid] = roomname;
-                    $.extend(true, window.rcuRoomMap, pair);
                 }
             }
         }
@@ -821,34 +807,30 @@
             var name = jTarget.attr("name");
             var desc = jTarget.attr("desc");
             var roomid = jTarget.data("roomid");
-            var roomname = jTarget.data("roomname");
             var icon = jTarget.css("background-image");
             var title = roomid + desc ;
             switch(name)
             {
             case "info":
-                $.rcu.get($.rcu.conststr.tag.mo_info).open({"title":title,"icon":icon,"roomid":roomid, "roomname":roomname});
+                $.rcu.get($.rcu.conststr.tag.mo_info).open({"title":title,"icon":icon,"roomid":roomid});
                 break;
             case "layout":
-                $.rcu.get($.rcu.conststr.tag.mo_layout).open({"title":title,"icon":icon,"roomid":roomid, "roomname":roomname});
+                $.rcu.get($.rcu.conststr.tag.mo_layout).open({"title":title,"icon":icon,"roomid":roomid});
                 break;
             case "temp":
-                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":0, "roomname":roomname});
+                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":0});
                 break;
-            case "setting_temp":
-                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":1, "roomname":roomname});
+            case "temp1":
+                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":1});
                 break;
-            case "wind":
-                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":2, "roomname":roomname});
-                break;
-            case "card":
-                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":3, "roomname":roomname});
+            case "temp2":
+                $.rcu.get($.rcu.conststr.tag.mo_temp).open({"title":title,"icon":icon,"roomid":roomid,"index":2});
                 break;
             case "log":
-                $.rcu.get($.rcu.conststr.tag.mo_log).open({"title":title,"icon":icon,"roomid":roomid, "roomname":roomname});
+                $.rcu.get($.rcu.conststr.tag.mo_log).open({"title":title,"icon":icon,"roomid":roomid});
                 break;
             case "set":
-                $.rcu.get($.rcu.conststr.tag.mo_set).open({"title":title,"icon":icon,"roomid":roomid, "roomname":roomname});
+                $.rcu.get($.rcu.conststr.tag.mo_set).open({"title":title,"icon":icon,"roomid":roomid});
                 break;
             }
             return false;

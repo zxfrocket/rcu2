@@ -75,7 +75,7 @@ function RcuMoTemp(opt)
                 this.send(sendopt);
             }
         };
-
+        
         RcuMoTemp.prototype.change = function (event)
         {
         };
@@ -225,104 +225,75 @@ function RcuMoTemp(opt)
         
         RcuMoTemp.prototype.plotChart = function (roomid, data)
         {
-          var id = "rcu-temp-canvas-" + roomid ;
-          var roomname = roomid ;
-          if(window.rcuRoomMap){
-            roomname = window.rcuRoomMap[roomid];
-          }
-          var title = roomname + "房间变化图";
-          if(2 == data[0].index){
-            title += " (0=停 1=低速 2=中速 3=高速)"
-          }
-          else if(3 == data[0].index){
-            title += " (0=无卡 1=有卡)"
-          }
-          var arr1d = [];
-          var arr2d = [];
-          var ticks = [];
-          for(var i = 0; i < data.length; ++i)
-          {
-            if(2 == data[0].index){
-              if(data[i].temp == 4){
-                data[i].temp = 3;
-              }
-              arr1d.push(parseInt(data[i].temp)) ;
+            var id = "rcu-temp-canvas-" + roomid ;
+            var title = roomid + "房间温度变化图";
+            var arr1d = [];
+            var arr2d = [];
+            var ticks = [];
+            for(var i = 0; i < data.length; ++i)
+            {
+                arr1d.push(parseInt(data[i].temp)) ;
+                ticks.push(getPrecision(data[i].time));
             }
-            else{
-              arr1d.push(parseInt(data[i].temp)) ;
-            }
-
-            ticks.push(getPrecision(data[i].time));
-          }
-          var ticksY = [0,5,10,15,20,25,30,35,40,45,50];
-          if(2 == data[0].index){
-            ticksY = [0, 1, 2, 3];
-          }
-          else if(3 == data[0].index){
-            ticksY = [0, 1];
-          }
-          arr2d.push(arr1d);
-          var options =
-          {
-            title:
-            {
-              text: title
-            },
-            seriesDefaults:
-            {
-              renderer: $.jqplot.BarRenderer
-            },
-            axes:
-            {
-              xaxis:
-              {
-                renderer: $.jqplot.CategoryAxisRenderer,
-                ticks: ticks,
-                tickRenderer: $.jqplot.CanvasAxisTickRenderer,
-                tickOptions:
+            arr2d.push(arr1d);
+            var options = 
+            { 
+                title: 
+                { 
+                    text: title
+                },
+                seriesDefaults:
                 {
-                  angle: -45
+                    renderer: $.jqplot.BarRenderer
+                },
+                axes: 
+                {
+                    xaxis:
+                    {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        ticks: ticks,
+                        tickRenderer: $.jqplot.CanvasAxisTickRenderer,
+                        tickOptions:
+                        {
+                            angle: -45
+                        }
+                    },
+                    yaxis:
+                    {
+                        ticks: [0,5,10,15,20,25,30,35,40,45,50]
+                    }
+                },
+                highlighter: 
+                {
+                    show: true,
+                    showTooltip: true,
+                    followMouse: false,
+                    tooltipLocation: 'n',
+                    tooltipAxes: 'y',
+                    useAxesFormatters: false,
+                    showMarker: false
+                    
+                },
+                cursor: 
+                {
+                    show: false
                 }
-              },
-              yaxis:
-              {
-                ticks: ticksY,
-                tickOptions:{
-                  formatString: '%d'
-                }
-              }
-            },
-            highlighter:
+            };
+            var oldPlot = this._jChart[roomid];
+            if(!!oldPlot)
             {
-              show: true,
-              showTooltip: true,
-              followMouse: false,
-              tooltipLocation: 'n',
-              tooltipAxes: 'y',
-              useAxesFormatters: false,
-              showMarker: false
-
-            },
-            cursor:
-            {
-              show: false
+                oldPlot.destroy();
             }
-          };
-          var oldPlot = this._jChart[roomid];
-          if(!!oldPlot)
-          {
-            oldPlot.destroy();
-          }
-          $("#" + id).children().remove();
-          var plot = $.jqplot(id, arr2d,options);
-          this._jChart[roomid] = plot ;
-
-          function getPrecision(time)
-          {
-            //time is 2010-10-12 13:50:00
-            var real = time.substring(0,16);
-            return real;
-          }
+            $("#" + id).children().remove();
+            var plot = $.jqplot(id, arr2d,options);
+            this._jChart[roomid] = plot ;
+            
+            function getPrecision(time)
+            {
+                //time is 2010-10-12 13:50:00
+                var real = time.substring(0,16);
+                return real;
+            }
         };
         
         RcuMoTemp._initialized = true;

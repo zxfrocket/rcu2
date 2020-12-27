@@ -13,13 +13,13 @@ public class RcuAuto
      */
     public static void main(String[] args)
     {
-        while(true)
+        if(true)
         {
             try
             {
                 AutoSendProcessor processor = null ;
                 processor = new AutoSendProcessor();
-                processor.Do();
+                processor.Do2();
             }
             catch (Exception e) 
             {

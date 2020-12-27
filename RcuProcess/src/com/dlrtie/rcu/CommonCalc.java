@@ -580,6 +580,52 @@ public class CommonCalc
         return bufList;
     }
     
+    public ByteArrayList GetGeoOpenData(int roomid) throws IOException
+    {
+        int floor = roomid / 100 ;
+        byte floorBCD = CommonCalc.Instance().BinaryToBCD((byte)floor);
+        int room = roomid % 100 ;
+        byte roomBCD = CommonCalc.Instance().BinaryToBCD((byte)room);
+        ByteArrayList bufList = new ByteArrayList();
+        bufList.add((byte)0xAA);
+        bufList.add((byte)0xCC);
+        bufList.add((byte)floorBCD);
+        bufList.add((byte)roomBCD);
+        bufList.add((byte)0xAF);
+        bufList.add((byte)0xFA);
+        bufList.add((byte)0xD0);
+        bufList.add((byte)0x50);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0xBB);
+        bufList.add((byte)0xCC);
+        return bufList;
+    }
+    
+    public ByteArrayList GetGeoCloseData(int roomid) throws IOException
+    {
+        int floor = roomid / 100 ;
+        byte floorBCD = CommonCalc.Instance().BinaryToBCD((byte)floor);
+        int room = roomid % 100 ;
+        byte roomBCD = CommonCalc.Instance().BinaryToBCD((byte)room);
+        ByteArrayList bufList = new ByteArrayList();
+        bufList.add((byte)0xAA);
+        bufList.add((byte)0xCC);
+        bufList.add((byte)floorBCD);
+        bufList.add((byte)roomBCD);
+        bufList.add((byte)0xAF);
+        bufList.add((byte)0xFA);
+        bufList.add((byte)0x85);
+        bufList.add((byte)0x05);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0x00);
+        bufList.add((byte)0xBB);
+        bufList.add((byte)0xCC);
+        return bufList;
+    }
+    
     public int GetCurrentWorkMode(DataOperator dataOperator) throws ClassNotFoundException, SQLException, IOException
     {
         int workMode = 0 ;
@@ -740,6 +786,21 @@ public class CommonCalc
         }
         str += CommonCalc.Instance().ConvertBufferToString(buffer);
         WriteLogIntoFile("serial", str);
+    }
+    
+    public void RecordInSettingLog(String username, final byte[] buffer) throws IOException
+    {
+        String str = "";
+        if(!username.contains("[") && !username.contains("]"))
+        {
+            str += ("[" + username + "]");
+        }
+        else
+        {
+            str += (username);
+        }
+        str += CommonCalc.Instance().ConvertBufferToString(buffer);
+        WriteLogIntoFile("setting", str);
     }
     
     public void RecordSerialLog(String type, String strMessage) throws IOException

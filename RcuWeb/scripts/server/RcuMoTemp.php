@@ -38,15 +38,11 @@ class RcuMoTemp extends RcuObject
         $tbName = 'RCU_TEMP_RECORD';
         if($index == 1)
         {
-           $tbName = 'RCU_SETTING_TEMP_RECORD';
+           $tbName = 'RCU_TEMP_RECORD1';
         }
         else if($index == 2)
         {
-           $tbName = 'RCU_WIND_RECORD';
-        }
-        else if($index == 3)
-        {
-           $tbName = 'RCU_CARD_RECORD';
+           $tbName = 'RCU_TEMP_RECORD2';
         }
         $cmd = "SELECT room_temp FROM $tbName WHERE room_id = $roomid AND date_time < '$preTimeStr' ORDER BY date_time DESC limit 1" ;
         $db = new data_operator();
@@ -55,7 +51,7 @@ class RcuMoTemp extends RcuObject
         $result = $db->fill_data($cmd);
         if ($obj = $result->fetch_object()) {
            $temp = $obj->room_temp;
-           $cell = array('time' => $preTimeStr, 'temp' => $temp, 'index'=> $index);
+           $cell = array('time' => $preTimeStr, 'temp' => $temp);
         }
         $db->disconn();
         return $cell ;
@@ -70,15 +66,11 @@ class RcuMoTemp extends RcuObject
         $tbName = 'RCU_TEMP_RECORD';
         if($index == 1)
         {
-           $tbName = 'RCU_SETTING_TEMP_RECORD';
+           $tbName = 'RCU_TEMP_RECORD1';
         }
         else if($index == 2)
         {
-           $tbName = 'RCU_WIND_RECORD';
-        }
-        else if($index == 3)
-        {
-           $tbName = 'RCU_CARD_RECORD';
+           $tbName = 'RCU_TEMP_RECORD2';
         }
         $cmd = "SELECT date_time, room_temp FROM $tbName WHERE room_id = $roomid AND date_time between '$beginStr' AND '$endStr' ORDER BY date_time" ;
         $db = new data_operator();
@@ -87,14 +79,14 @@ class RcuMoTemp extends RcuObject
         while ($obj = $result->fetch_object()) {
            $time = $obj->date_time;
            $temp = $obj->room_temp;
-           $cell = array('time' => $time, 'temp' => $temp, 'index'=> $index);
+           $cell = array('time' => $time, 'temp' => $temp);
            array_push($effectArr,$cell);
         }
         $db->disconn();
         //得到end时间的前一个时间的温度，作为$effectArr的最后一个值
         $lastTemp = $this->getPreviewTemp($roomid,$endStr,$index);
         array_push($effectArr,$lastTemp);
-        //返回值类似于[{'time' => $time, 'temp' => $temp, 'index'=> $index},{}]
+        //返回值类似于[{'time' => $time, 'temp' => $temp},{}]
         return $effectArr ;
     }
 }

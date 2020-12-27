@@ -541,30 +541,20 @@ function RcuCommon(opt)
         
         RcuCommon.prototype.getTempColor = function(v)
         {
-          var color = "#008000";//"Green";
-
-          if(v <= 16 || v >= 30)
-          {
-            color = "#FF0000";//"Red";
-          }
-          else if(v <= 18 || v >= 29)
-          {
-            color = "#FFFF00";//"Yellow";
-          }
-          else if(v <= 21 || v >= 27)
-          {
-            color = "#FFA500";//"Orange";
-          }
-          if(v == 1){
-            color = "#008000";
-          }
-          else if(v == 2){
-            color = "#FFFF00"
-          }
-          else if(v == 3){
-            color = "#FF0000"
-          }
-          return color ;
+            var color = "#008000";//"Green";
+            if(v <= 16 || v >= 30)
+            {
+                color = "#FF0000";//"Red";
+            }
+            else if(v <= 18 || v >= 29)
+            {
+                color = "#FFFF00";//"Yellow";
+            }
+            else if(v <= 21 || v >= 27)
+            {
+                color = "#FFA500";//"Orange";
+            }
+            return color ;
         };
         
         RcuCommon.prototype.getStateTitleArr = function()

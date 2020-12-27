@@ -1,6 +1,9 @@
 package com.dlrtie.rcu;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.ResultSet;
+import java.util.Timer;
 
 public class AutoSendProcessor
 {
@@ -13,9 +16,16 @@ public class AutoSendProcessor
     
     private final int workModeAuto = 0;
     
+    private Timer trOpenGeothermy = null ;
+    private Timer trCloseGeothermy = null ;
+    
+    private int openInterval = 0 ;
+    private int closeInterval = 0 ;
+    private int sumInterval = 0 ;
+    
     public AutoSendProcessor() throws Exception
     {
-        DataOperator dataOperator = null ;
+        /*DataOperator dataOperator = null ;
         try
         {
             dataOperator = new DataOperator();
@@ -44,7 +54,40 @@ public class AutoSendProcessor
                 dataOperator.ExceptionClose();
             }
             throw(e);
+        }*/
+        
+        if(trOpenGeothermy != null)
+        {
+            trOpenGeothermy.cancel() ;
+            trOpenGeothermy = null ;
         }
+        
+        if(trCloseGeothermy != null)
+        {
+            trCloseGeothermy.cancel() ;
+            trCloseGeothermy = null ;
+        }
+        
+        FileReader reader = new FileReader(CommonCalc.Instance().GetConfigName());
+        BufferedReader buffer = new BufferedReader(reader);
+        String tempString = null;
+        while ((tempString = buffer.readLine()) != null) 
+        {
+            if(-1 == tempString.indexOf("#"))
+            {
+                if(tempString.indexOf("open") >=0 )
+                {
+                    int openMin = Integer.valueOf(tempString.replace("open=", ""));
+                    openInterval = openMin * 60 * 1000 ;
+                }
+                else if(tempString.indexOf("close") >=0)
+                {
+                    int closeMin = Integer.valueOf(tempString.replace("close=", ""));
+                    closeInterval = closeMin * 60 * 1000 ;
+                }
+            }
+        }
+        sumInterval = openInterval + closeInterval ;
     }
     
     public void Do() throws Exception
@@ -141,5 +184,13 @@ public class AutoSendProcessor
                 }
             }
         }
+    }
+    
+    public void Do2() throws Exception
+    {
+        trOpenGeothermy = new Timer();
+        trCloseGeothermy = new Timer();
+        trOpenGeothermy.schedule(new ScheduleProcessor(true), 0, sumInterval);
+        trCloseGeothermy.schedule(new ScheduleProcessor(false), closeInterval, sumInterval);
     }
 }

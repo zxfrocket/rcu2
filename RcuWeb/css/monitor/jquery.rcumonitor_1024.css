@@ -277,17 +277,13 @@ div.mo-btn[name="temp"]
 {
     background-image: url(../../resource/image/monitor/1024/btnTemp.png);
 }
-div.mo-btn[name="setting_temp"]
+div.mo-btn[name="temp1"]
 {
-    background-image: url(../../resource/image/monitor/1024/btnSettingTemp.png);
+    background-image: url(../../resource/image/monitor/1024/btnTemp1.png);
 }
-div.mo-btn[name="wind"]
+div.mo-btn[name="temp2"]
 {
-    background-image: url(../../resource/image/monitor/1024/windAuto.png);
-}
-div.mo-btn[name="card"]
-{
-  background-image: url(../../resource/image/monitor/1024/cardOn.png);
+    background-image: url(../../resource/image/monitor/1024/btnTemp2.png);
 }
 
 div.mo-btn[name="log"]

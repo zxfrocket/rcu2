@@ -325,13 +325,8 @@
                     //str = $.jqplot.sprintf(opts.tooltipFormatString, neighbor.data[1]);
                     var pidx = neighbor.pointIndex;
                     var tick = plot.axes.xaxis.ticks[pidx];
-                  if(neighbor.data[1] > 8){
                     str = $.jqplot.sprintf("%s : %d℃", tick,neighbor.data[1]);
-                  }
-                  else{
-                    str = $.jqplot.sprintf("%s : %d", tick,neighbor.data[1]);
-                  }
-                }
+                } 
             }
         }
         if ($.isFunction(opts.tooltipContentEditor)) {

@@ -66,6 +66,8 @@ public class WorkOrderProcessor
                                 FrameProcessor.Instance().ProcessFrameData(dataOperator, buffer);
                                 //Log记录没有发送记录，只有接收记录，即直接把值记录到了数据库中
                                 CommonCalc.Instance().MakeUpNewLog(dataOperator, username,0, buffer);
+                                //记录到文件中 北京的要求
+                                CommonCalc.Instance().RecordInSettingLog(username, buffer);
                             }
                         }
                         dataOperator.ExcuteCmd("UPDATE RCU_WORK_ORDER SET process_time = now(), order_state = " + orderState +" WHERE order_id = "
