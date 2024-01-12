@@ -57,6 +57,10 @@ xcopy ..\RcuProcess\conf.ini ..\RcuService\conf\ /y
 xcopy .\jdk ..\RcuService\jdk\ /E/y
 xcopy ..\RcuProcess\log ..\RcuService\log\ /T/E/y
 mkdir ..\RcuService\log\service
+mkdir ..\RcuService\log\serial
+mkdir ..\RcuService\log\error
+mkdir ..\RcuService\log\opera
+mkdir ..\RcuService\log\order
 ::compile
 set packpath=com\dlrtie\rcu\
 mkdir ..\RcuService\RcuAll\lib\%packpath%
